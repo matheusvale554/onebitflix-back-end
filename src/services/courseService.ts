@@ -39,5 +39,13 @@ return courseWithEpisodes
         const randomFeaturedCourses = featuredCourses.sort(()=> 0.5 - Math.random())
 
         return randomFeaturedCourses.slice(0,3)
+    },
+
+    getTopTenNewest: async()=>{
+        const courses = await Course.findAll({
+            limit:10,
+            order:[['created_at','DESC']]
+        })
+        return courses
     }
 }
