@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import fs from "fs";
 import path from "path";
-import { episodeService } from "../services/episode.Service";
+import { episodeService } from "../services/episodeService";
 
 export const episodesController = {
     //get/episodes/stream?videoUrl=
