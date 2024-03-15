@@ -30,5 +30,19 @@ export const favoreitesController = {
         }
     }
 
-}
+},
+//DELETE /favorites/:id
+delete: async (req: AuthenticatedRequest, res: Response) => {
+    const userId = req.user!.id
+    const courseId = req.query.id
+
+    try {
+      await favoriteService.delete(Number(userId), Number(courseId))
+      return res.status(204).send()
+    } catch (err) {
+      if (err instanceof Error) {
+        return res.status(400).json({ message: err.message })
+      }
+    }
+  }
 }
