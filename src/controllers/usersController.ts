@@ -45,11 +45,29 @@ export const usersController = {
 
             return res.json(updatedUser)
         } catch (error) {
-            console.log(error)
             if (error instanceof Error) {
                 return res.status(400).json({ message: error.message })
             }
         }
 
+    },
+
+    //put /users/current/password
+    updatePassword: async (req:AuthenticatedRequest, res:Response)=>{
+        const user = req.user!
+        const {currentPassword,newPassword} = req.body
+        user.checkPassword(currentPassword,async (err,isSame)=>{
+            try {
+                if(err) return res.status(400).json({message: err.message})
+                if(!isSame) return res.status(400).json({message:"Senha incorreta"})
+                await userService.updatedPassword(Number(user.id),newPassword)
+            return res.status(204).send()
+        } catch (error) {
+            if (error instanceof Error) {
+                return res.status(400).json({ message: error.message })
+            }
+        }
+        })
     }
 }
+    
