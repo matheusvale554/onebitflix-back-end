@@ -3,7 +3,6 @@ import { categoryService } from "../services/categoryService";
 import { getPaginationParams } from "../helpers/getPaginationParams";
 
 export const categoriesController = {
-    //GET/ CATEGORIES
     index:async(req:Request,res:Response)=>{
   const [page,perPage] = getPaginationParams(req.query)
          
@@ -19,10 +18,10 @@ export const categoriesController = {
         }
     },
         show: async (req: Request, res: Response) => {
-            const { id } = req.params
+            const { id } = req.params 
         
             try {
-              const category = await categoryService.findByIdWithCourses(id)
+              const category = await categoryService.findByIdWithCourses(Number(id))
               return res.json(category)
             } catch (err) {
               if (err instanceof Error) {

@@ -39,7 +39,6 @@ export const favoriteService = {
         } catch (error) {
             console.log(error)
         }
-
     },
     isFavorited: async(userId: number, courseId: number)=>{
         const favorite = await Favorite.findOne ({
