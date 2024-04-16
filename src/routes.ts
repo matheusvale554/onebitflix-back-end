@@ -29,10 +29,10 @@ router.post('/episodes/:id/watchTime',ensureAuth,episodesController.setWatchTime
 
 router.get('/favorites', ensureAuth, favoreitesController.index)
 router.post('/favorites', ensureAuth, favoreitesController.save)
-router.delete('/favorites', ensureAuth, favoreitesController.delete)
+router.delete('/favorites/:courseId', ensureAuth, favoreitesController.delete)
 
 router.post('/likes', ensureAuth, likesController.save)
-router.delete('/likes', ensureAuth, likesController.delete)
+router.delete('/likes/:courseId', ensureAuth, likesController.delete)
 
 router.get('/users/current',ensureAuth,usersController.show)
 router.get('/users/current/watching',ensureAuth,usersController.watching)
